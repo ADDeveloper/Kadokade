@@ -1,0 +1,48 @@
+@charset "utf-8";
+/*body { direction:rtl }*/
+.ui-collapsible-heading a{text-align:right}
+.ui-checkbox .ui-btn,.ui-radio .ui-btn{text-align:right}
+.ui-li,.ui-li.ui-field-contain{text-align:right}
+.ui-block-a,.ui-block-b,.ui-block-c,.ui-block-d,.ui-block-e{float:right}
+.ui-grid-solo .ui-block-a {float:right}
+.ui-navbar-collapsed ul {float:right}
+.ui-navbar-collapsed .ui-navbar-toggle{float:right}
+.ui-controlgroup-horizontal .ui-checkbox,.ui-controlgroup-horizontal .ui-radio {float:right}
+.ui-li-thumb,.ui-listview .ui-li-icon,.ui-li-content {float:right}
+/*.ui-li-thumb, .ui-listview .ui-li-icon {right: 1px; left:auto; max-height: 80px; max-width: 80px; position: absolute;  top: 0;}
+.ui-li-aside {float:left;text-align:left}
+.ui-btn-icon-left .ui-icon { right: 10px;left:auto}
+.ui-btn-icon-right .ui-icon { left: 10px;right:auto;}
+.ui-li-has-count .ui-btn-text{padding-left:15px;padding-right:auto}
+.ui-collapsible-heading .ui-btn-icon-top .ui-btn-inner,.ui-collapsible-heading .ui-btn-icon-bottom .ui-btn-inner{padding-left:40px;text-align:center;padding-right:auto}
+.ui-collapsible-heading .ui-btn-icon-right .ui-btn-inner{padding-left:40px;padding-right:12px}
+.ui-checkbox .ui-btn-icon-left .ui-btn-inner,.ui-radio .ui-btn-icon-left .ui-btn-inner{padding-right:45px;padding-left:auto}
+.ui-checkbox .ui-mini.ui-btn-icon-left .ui-btn-inner,.ui-radio .ui-mini.ui-btn-icon-left .ui-btn-inner{padding-right:36px;padding-left:auto}
+.ui-li-has-thumb .ui-btn-inner a.ui-link-inherit,.ui-li-static.ui-li-has-thumb{min-height:60px;padding-right:100px;padding-left:auto}
+.ui-li-has-icon .ui-btn-inner a.ui-link-inherit,.ui-li-static.ui-li-has-icon{min-height:20px;padding-right:40px;padding-left:auto}
+.ui-li-has-thumb .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-thumb {padding-left:0px}
+.ui-header .ui-btn-left,
+.ui-footer .ui-btn-left { right: 5px;left:auto }
+.ui-header .ui-btn-right,
+.ui-footer .ui-btn-right { left: 5px; right:auto}
+.ui-btn-icon-left .ui-btn-inner { padding-right: 40px; padding-left: auto }
+.ui-btn-icon-right .ui-btn-inner { padding-left: 40px; padding-right: auto }
+.ui-header .ui-btn-icon-left .ui-btn-inner,
+.ui-footer .ui-btn-icon-left .ui-btn-inner,
+.ui-mini .ui-btn-icon-left .ui-btn-inner { padding-right: 30px; padding-left:auto }
+.ui-header .ui-btn-icon-right .ui-btn-inner,
+.ui-footer .ui-btn-icon-right .ui-btn-inner,
+.ui-mini .ui-btn-icon-right .ui-btn-inner { padding-left: 30px; padding-right:auto }
+.ui-header .ui-btn-icon-left .ui-icon,
+.ui-footer .ui-btn-icon-left .ui-icon,
+.ui-mini.ui-btn-icon-left .ui-icon,
+.ui-mini .ui-btn-icon-left .ui-icon { right: 5px; left:auto }
+.ui-header .ui-btn-icon-right .ui-icon,
+.ui-footer .ui-btn-icon-right .ui-icon,
+.ui-mini.ui-btn-icon-right .ui-icon,
+.ui-mini .ui-btn-icon-right .ui-icon { left: 5px; right: auto }*/
+
+
+
+
+

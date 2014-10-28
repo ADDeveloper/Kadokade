@@ -1,0 +1,56 @@
+@font-face {
+  font-family: "BNazanin";
+  src: url('fonts/BYekan/BYekan.eot?1315566024');
+  src: url('fonts/BYekan/BYekan.eot?&1315566024#iefix') format('embedded-opentype'), url('fonts/BYekan/BYekan.woff?1315561604') format('woff'), url('fonts/BYekan/BYekan.ttf?1315561590') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+[data-role] {
+  direction: rtl;
+}
+
+body, input, select, textarea, button, .ui-btn {
+  font-family: BNazanin,san-serif;
+  font-size: 20px;
+}
+
+.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
+  text-shadow: none;
+}
+
+.ui-input-text, .ui-input-search {
+  border-radius: 5px;
+}
+
+.ui-input-text input, .ui-input-search input {
+  text-align: right;
+  direction: rtl;
+}
+
+.ui-input-text.error {
+  background-color: #FFC8C8;
+  border-color: #EA2727;
+  color: #FF0027;
+}
+
+.ui-input-text.ui-focus {
+  -moz-box-shadow: 0 0 12px #F55400;
+  -webkit-box-shadow: 0 0 12px #F55400;
+  box-shadow: 0 0 12px #F55400;
+}
+
+.ui-shadow-inset.error {
+  -moz-box-shadow: inset 0 1px 1px rgba(255, 0, 0, 0.3);
+  -webkit-box-shadow: inset 0 1px 1px rgba(255, 0, 0, 0.3);
+  box-shadow: inset 0 1px 1px rgba(255, 0, 0, 0.3);
+}
+
+.ui-focus.error {
+  -moz-box-shadow: 0 0 12px #EA2727;
+  -webkit-box-shadow: 0 0 12px #EA2727;
+  box-shadow: 0 0 12px #EA2727;
+}
+
+.text-error {
+  color: #DA0000;
+}

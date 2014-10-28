@@ -1,0 +1,58 @@
+@import "compass";
+
+
+$bikooch-font-path:  'BYekan/';
+
+@include font-face(
+        'BNazanin',
+        font-files(
+                $bikooch-font-path + 'BYekan.woff',
+                $bikooch-font-path + 'BYekan.ttf'
+        ),
+        $bikooch-font-path + 'BYekan.eot',
+        normal,
+        normal
+);
+
+
+
+
+[data-role] {
+    direction: rtl;
+}
+
+
+body, input, select, textarea, button, .ui-btn{
+    font-family: BNazanin,san-serif;
+    font-size: 20px;
+}
+.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper{
+    text-shadow: none;
+}
+
+.ui-input-text , .ui-input-search {border-radius: 5px}
+.ui-input-text input, .ui-input-search input{
+    text-align: right;
+    direction: rtl;
+}
+
+.ui-input-text.error{
+    background-color: #FFC8C8;
+    border-color: #EA2727;
+    color: #FF0027 ;
+}
+.ui-input-text.ui-focus{
+    @include box-shadow(0 0 12px #F55400);
+}
+.ui-shadow-inset.error {
+    @include box-shadow(inset 0 1px 1px rgba(255,0,0,0.3));
+}
+
+
+.ui-focus.error {
+    @include box-shadow(0 0 12px  #EA2727);
+}
+
+.text-error{
+    color: #DA0000;
+}
