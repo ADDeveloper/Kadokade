@@ -45,5 +45,47 @@ class Api extends REST_Controller{
 		}
 	}
      
+	function verification_get(){
+        if($this->get('cell_number') && $this->get('verification_code')){
+			$this->load->model('user_model');
+			$params = new stdclass;
+			$params->cell_number = $this->get('cell_number');
+			$params->verification_code = $this->get('verification_code');
+			$result = $this->user_model->checkVerification($params);
+            $this->response($result, 200); // 200 being the HTTP response code
+		}
+        else{
+            $this->response(NULL, 404);
+		}
+	}
+     
+	function login_get(){
+        if($this->get('cell_number') && $this->get('password')){
+			$this->load->model('user_model');
+			$params = new stdclass;
+			$params->cell_number = $this->get('cell_number');
+			$params->password = $this->get('password');
+			$result = $this->user_model->login($params);
+            $this->response($result, 200); // 200 being the HTTP response code
+		}
+        else{
+            $this->response(NULL, 404);
+		}
+	}
+     
+	function setPassword_get(){
+        if($this->get('cell_number') && $this->get('password')){
+			$this->load->model('user_model');
+			$params = new stdclass;
+			$params->cell_number = $this->get('cell_number');
+			$params->password = $this->get('password');
+			$result = $this->user_model->setPassword($params);
+            $this->response($result, 200); // 200 being the HTTP response code
+		}
+        else{
+            $this->response(NULL, 404);
+		}
+	}
+     
 }
 ?>

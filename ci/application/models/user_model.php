@@ -67,5 +67,82 @@ class user_model extends ci_model {
 			}
 		}
     }
+	
+    function checkVerification($parameters) {
+		$output = new stdclass;
+        $SQL = "SELECT * FROM `users` WHERE `cell_number`=? AND `verification_code`=? AND `status`=1";
+        $q = $this->db->query($SQL, array($parameters->cell_number, $parameters->verification_code));
+		if ($q->num_rows() > 0){
+			$output->status = -2;
+			$output->message = 'cell number already verified';
+			return $output;
+		}
+
+        $SQL = "SELECT * FROM `users` WHERE `cell_number`=? AND `verification_code`=? AND `status`=0";
+        $q = $this->db->query($SQL, array($parameters->cell_number, $parameters->verification_code));
+
+		if ($q->num_rows() == 0){
+			$output->status = -1;
+			$output->message = 'cell number or verification code not valid';
+			return $output;
+		}
+		else{
+			$data = array();
+			$data['status'] = 1;
+			$this->db->where('cell_number', $parameters->cell_number);
+			$this->db->update('users', $data); 
+			$output->status = 1;
+			$output->message = 'validated';
+			return $output;
+		}
+    }
+    
+	function login($parameters) {
+		$output = new stdclass;
+        $SQL = "SELECT IMEI FROM `users` WHERE `cell_number`=? AND `status`=1";
+		$q = $this->db->query($SQL, array($parameters->cell_number));
+		if ($q->num_rows() == 0){
+			$output->status = -1;
+			$output->message = 'cell number not registered';
+			return $output;
+		}
+		$tmp = $q->row(); 
+		$IMEI = $tmp->IMEI;
+		$password = sha1($IMEI.$parameters->password);
+        $SQL = "SELECT * FROM `users` WHERE `cell_number`=? AND `password`=? AND `status`=1";
+        $q = $this->db->query($SQL, array($parameters->cell_number, $password));
+		if ($q->num_rows() == 0){
+			$output->status = -2;
+			$output->message = 'password error';
+			return $output;
+		}
+		else{
+			$output->status = 1;
+			$output->message = 'login ok';
+			return $output;
+		}
+    }
+    
+	function setPassword($parameters) {
+		$output = new stdclass;
+        $SQL = "SELECT `IMEI` FROM `users` WHERE `cell_number`=? AND `status`=1";
+		$q = $this->db->query($SQL, array($parameters->cell_number));
+		if ($q->num_rows() == 0){
+			$output->status = -1;
+			$output->message = 'cell number not registered';
+			return $output;
+		}
+		$tmp = $q->row(); 
+		$IMEI = $tmp->IMEI;
+		$password = sha1($IMEI.$parameters->password);
+		$data = array();
+		$data['password'] = $password;
+		$this->db->where('cell_number', $parameters->cell_number);
+		$this->db->update('users', $data); 
+		$output->status = 1;
+		$output->message = 'password set';
+		return $output;
+    }
+	
 }
 
