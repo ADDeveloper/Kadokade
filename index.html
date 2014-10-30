@@ -8,6 +8,7 @@
         <!--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">-->
         <link rel="stylesheet" href="css/jquery.mobile-1.4.4.css">
         <link rel="stylesheet" href="css/kadokade-theme.css">
+        <link rel="stylesheet" href="css/rtl.css">
         <link rel="stylesheet" href="css/base.css">
         <script src="js/jquery-1.11.1.js"></script>
         <script src="js/jquery.mobile-1.4.4.js"></script>
@@ -24,73 +25,259 @@
                 max-height: 420px;
                 max-width: 100%;
             }
-            #firstPage .ui-input-text{
-                position: relative;
-            }
-            #firstPage .ui-input-text:before{
-                position: absolute;
-                left: 5px;
-                top: 0;
-                bottom: 0;
-                content: "09";
-                line-height: 46px;
-            }
-            #firstPage .ui-input-text input,#firstPage .ui-input-search input{padding-left: 30px}
+
         </style>
         <script>
-            $(function(){
-/*                $('#changePage').click(function(){
+            $( document ).one( "pagecreate", "#mainFirstPage", function() {
+                $( "#mainFirstPage-text-1" ).on('focus',function(){
+                    if(!$( this ).val().length){
+                        $(this).parent().addClass('no-label');
+                        /*for iphone bug setTimeout Added*/
+                        setTimeout(function(){
+                            $( "#mainFirstPage-text-1"  ).val('09')
+                        },100)
 
-                })*/
-            })
+                    }
+
+                })
+                $( "#mainFirstPage-text-1" ).on('blur',function(){
+                    if($( this ).val().length < 3){
+                        $( this ).val('')
+                        $(this).parent().removeClass('no-label');
+                    }
+                })
+                $( "#mainFirstPage-text-2" ).on('focus',function(){
+                    if(!$( this ).val().length){
+                        $(this).parent().addClass('no-label');
+                        setTimeout(function(){
+                            $( "#mainFirstPage-text-2"  ).val('09')
+                        },100)
+                    }
+
+                })
+                $( "#mainFirstPage-text-2" ).on('blur',function(){
+                    if($( this ).val().length < 3){
+                        $( this ).val('')
+                        $(this).parent().removeClass('no-label');
+                    }
+                })
+                $( "#registerForm" ).submit(function( event ) {
+                    event.preventDefault();
+                    if(false){
+                        objTools.validation.addError('#mainFirstPage-text-1','لطفا فقط عدد وارد نمایید.')
+//                        objTools.validation.removeError('#mainFirstPage-text-1')
+                    }
+                    else{
+                        $.mobile.loading( "show");
+                        $.ajax({
+                            url: "test.php",
+                            data: $( this ).serialize(),
+                            type: "GET",
+                            dataType : "html",
+                            success: function( json ) {
+                                $.mobile.changePage( "#mainSecondPage");
+                            },
+                            error: function( xhr, status, errorThrown ) {
+
+                            },
+                            complete: function( xhr, status ) {
+                                $.mobile.loading( "hide");
+                            }
+                        });
+                    }
+
+                });
+
+            });
+            $( document ).one( "pagecreate", "#mainSecondPage", function() {
+                $('#resendCode').click(function(){
+                    $.mobile.loading( "show");
+                })
+                $( "#confirmForm" ).submit(function( event ) {
+                    event.preventDefault();
+                    if(false){
+
+                    }
+                    else{
+                        $.mobile.loading( "show");
+                        $.ajax({
+                            url: "test.php",
+                            data: $( this ).serialize(),
+                            type: "GET",
+                            dataType : "html",
+                            success: function( json ) {
+                                $.mobile.changePage( "#mainThirdPage");
+                            },
+                            error: function( xhr, status, errorThrown ) {
+
+                            },
+                            complete: function( xhr, status ) {
+                                $.mobile.loading( "hide");
+                            }
+                        });
+                    }
+
+                });
+            });
+            $( document ).one( "pagecreate", "#mainThirdPage", function() {
+                $('#resendCode').click(function(){
+                    $.mobile.loading( "show");
+                })
+                $( "#setPasswordForm" ).submit(function( event ) {
+                    event.preventDefault();
+                    if(false){
+
+                    }
+                    else{
+                        $.mobile.loading( "show");
+                        $.ajax({
+                            url: "test.php",
+                            data: $( this ).serialize(),
+                            type: "GET",
+                            dataType : "html",
+                            success: function( json ) {
+                                $.mobile.changePage( "#mainFourthPage");
+                            },
+                            error: function( xhr, status, errorThrown ) {
+
+                            },
+                            complete: function( xhr, status ) {
+                                $.mobile.loading( "hide");
+                            }
+                        });
+                    }
+
+                });
+            });
+            $( document ).one( "pagecreate", "#mainFourthPage", function() {
+                $( "#loginForm" ).submit(function( event ) {
+                    event.preventDefault();
+                    if(false){
+
+                    }
+                    else{
+                        $.mobile.loading( "show");
+                        $.ajax({
+                            url: "test.php",
+                            data: $( this ).serialize(),
+                            type: "GET",
+                            dataType : "html",
+                            success: function( json ) {
+                                $.mobile.changePage( "#mainFirstPage");
+                            },
+                            error: function( xhr, status, errorThrown ) {
+
+                            },
+                            complete: function( xhr, status ) {
+                                $.mobile.loading( "hide");
+                            }
+                        });
+                    }
+
+                });
+            });
         </script>
     </head>
     <body>
-        <div data-role="page" id="firstPage">
-            <div role="main" class="ui-content">
+        <div data-role="page" id="mainFirstPage">
+            <div role="main" class="ui-content mainPage">
                 <div class="loginLogo">
-                    <img src="images/s1.jpg" alt="loginLogo"/>
+                    <img src="images/main-logo.jpg" alt="loginLogo"/>
                 </div>
-                <form>
-                    <input type="text" name="firstPage-text-1" id="firstPage-text-1" value="" placeholder="شماره موبایل معرف ...">
-                    <div class="text-error" id="firstPage-text-1-error-text">
+                <form id="registerForm">
+                    <input type="text" name="mainFirstPage-text-1" id="mainFirstPage-text-1" value="" placeholder="شماره موبایل معرف ...">
+                    <div class="text-error" id="mainFirstPage-text-1-errorText">
                         <div>
                             لطفا فقط عدد وارد نمایید.
                         </div>
                     </div>
-                    <input type="text" name="firstPage-text-2" id="firstPage-text-2" value="" placeholder="شماره موبایل خودت ...">
-                    <div class="text-error" id="firstPage-text-2-error-text">
+                    <input type="text" name="mainFirstPage-text-2" id="mainFirstPage-text-2" value="" placeholder="شماره موبایل خودت ...">
+                    <div class="text-error" id="mainFirstPage-text-2-errorText">
                         <div>
                             لطفا فقط عدد وارد نمایید.
                         </div>
                     </div>
                     <input type="submit" value="ثبت">
                 </form>
-
-<!--                <a class="ui-btn" href="#secondPage">
-                    رفت
-                </a>-->
             </div>
         </div>
-        <div data-role="page" id="secondPage">
-            <div role="main" class="ui-content">
+        <div data-role="page" id="mainSecondPage">
+            <div role="main" class="ui-content mainPage">
                 <div class="loginLogo">
-                    <img src="images/s1.jpg" alt="loginLogo"/>
+                    <img src="images/main-logo.jpg" alt="loginLogo"/>
                 </div>
-                <form>
-                    <input type="text" name="secondPage-text-1" id="secondPage-text-1" value="" placeholder="شماره موبایل معرف ...">
-                    <div class="text-error" id="secondPage-text-1-error-text">
+                <form  id="confirmForm">
+                    <div class="top-text">
+                        کدی که از طرف
+                        <img src="images/logotype-small.png" alt="logo small text"/>
+                        برای شما پیامک شده برای تایید ثبت  نام اینجا وارد کنید.
+                    </div>
+                    <input type="text" name="mainSecondPage-text-1" id="mainSecondPage-text-1" value="" placeholder="کد تایید ثبت نام ...">
+                    <div class="text-error" id="mainSecondPage-text-1-errorText">
                         <div>
-                            لطفا فقط عدد وارد نمایید.
+                            کد تایید نادرست است.
                         </div>
                     </div>
-                    <input type="text" name="secondPage-text-2" id="secondPage-text-2" value="" placeholder="شماره موبایل خودت ...">
-                    <div class="text-error" id="secondPage-text-2-error-text">
+                    <fieldset class="ui-grid-a">
+                        <div class="ui-block-a"><input type="reset" id="resendCode"  value="ارسال مجدد کد" ></div>
+                        <div class="ui-block-b"><input type="submit" value="تایید" ></div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div data-role="page" id="mainThirdPage">
+            <div role="main" class="ui-content mainPage">
+                <div class="loginLogo">
+                    <img src="images/main-logo.jpg" alt="loginLogo"/>
+                </div>
+                <form  id="setPasswordForm">
+                    <div class="top-text">
+                        حساب کاربری شما همان شماره موبایل شماست!
+                    </div>
+                    <input type="text" name="mainThirdPage-text-1" id="mainThirdPage-text-1" value="09155109023" disabled placeholder="شماره موبایل ..." >
+                    <input type="text" name="mainThirdPage-text-2" id="mainThirdPage-text-2" value="" placeholder="لطفا پسورد خودت رو اینجا وارد کن ...">
+                    <div class="text-error" id="mainThirdPage-text-2-errorText">
                         <div>
-                            لطفا فقط عدد وارد نمایید.
+                            خطا
                         </div>
                     </div>
-                    <input type="submit" value="ثبت">
+                    <fieldset class="ui-grid-a">
+                        <div class="ui-block-a"><a href="#" class="ui-btn ui-shadow ui-corner-all" data-transition="pop">نه بعدا </a></div>
+                        <div class="ui-block-b"><input type="submit" value="ثبت نام" ></div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div data-role="page" id="mainFourthPage">
+            <div role="main" class="ui-content mainPage">
+                <div class="loginLogo">
+                    <img src="images/main-logo.jpg" alt="loginLogo"/>
+                </div>
+                <form  id="loginForm">
+                    <input type="text" name="mainFourthPage-text-1" id="mainFourthPage-text-1" value="" placeholder="نام کاربری ..." >
+                    <div class="text-error" id="mainFourthPage-text-1-errorText">
+                        <div>
+                            خطا
+                        </div>
+                    </div>
+                    <input type="text" name="mainFourthPage-text-2" id="mainFourthPage-text-2" value="" placeholder="رمز عبور ...">
+                    <div class="text-error" id="mainFourthPage-text-2-errorText">
+                        <div>
+                            خطا
+                        </div>
+                    </div>
+                    <fieldset class="ui-grid-a">
+                        <div class="ui-block-a">
+                            <input type="checkbox" name="mainFourthPage-checkbox-0" id="mainFourthPage-checkbox-0" data-mini="true" data-iconpos="right">
+                            <label for="mainFourthPage-checkbox-0">
+                                مرا به خاطر بسپار
+                            </label>
+                        </div>
+                        <div class="ui-block-b">
+                            <a href="forgotPass.html" class="ui-btn ui-mini ui-corner-all forgot-link"> کلمه عبور رو فراموش کردم </a>
+                        </div>
+                    </fieldset>
+                    <input type="submit" value="ورود">
                 </form>
             </div>
         </div>
