@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>External panels - jQuery Mobile Demos</title>
+        <!--<link rel="shortcut icon" href="../favicon.ico">-->
+        <!--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">-->
+        <link rel="stylesheet" href="css/jquery.mobile-1.4.4.css">
+        <link rel="stylesheet" href="css/kadokade-theme.css">
+        <link rel="stylesheet" href="css/rtl.css">
+        <link rel="stylesheet" href="css/base.css">
+        <script src="js/jquery-1.11.1.js"></script>
+        <script src="js/jquery.mobile-1.4.4.js"></script>
+        <script src="js/base.js"></script>
+        <style>
+            .ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper{
+                background-color: #ff9800;
+            }
+            .loginLogo {
+                text-align: center;
+                margin-top: 30px;
+            }
+            .loginLogo img{
+                max-height: 420px;
+                max-width: 100%;
+            }
+
+        </style>
+        <script>
+            $( document ).one( "pagecreate", "#forgotPassFirstPage", function() {
+                $( "#forgotPassForm1" ).submit(function( event ) {
+                    event.preventDefault();
+                    if(false){
+                        objTools.validation.addError('#forgotPassFirstPage-text-1','لطفا فقط عدد وارد نمایید.')
+//                        objTools.validation.removeError('#forgotPassFirstPage-text-1')
+                    }
+                    else{
+                        $.mobile.loading( "show");
+                        $.ajax({
+                            url: "test.php",
+                            data: $( this ).serialize(),
+                            type: "GET",
+                            dataType : "html",
+                            success: function( json ) {
+                                $.mobile.changePage( "#forgotPassSecondPage");
+                            },
+                            error: function( xhr, status, errorThrown ) {
+
+                            },
+                            complete: function( xhr, status ) {
+                                $.mobile.loading( "hide");
+                            }
+                        });
+                    }
+
+                });
+
+            });
+            $( document ).one( "pagecreate", "#forgotPassSecondPage", function() {
+                $( "#forgotPassForm2" ).submit(function( event ) {
+                    event.preventDefault();
+                    if(false){
+
+                    }
+                    else{
+                        $.mobile.loading( "show");
+                        $.ajax({
+                            url: "test.php",
+                            data: $( this ).serialize(),
+                            type: "GET",
+                            dataType : "html",
+                            success: function( json ) {
+                                $.mobile.changePage( "#forgotPassThirdPage");
+                            },
+                            error: function( xhr, status, errorThrown ) {
+
+                            },
+                            complete: function( xhr, status ) {
+                                $.mobile.loading( "hide");
+                            }
+                        });
+                    }
+
+                });
+
+            });
+//            $( document ).one( "pagecreate", "#forgotPassSecondPage", function() {
+//                $('#resendCode').click(function(){
+//                    $.mobile.loading( "show");
+//                })
+//                $( "#confirmForm" ).submit(function( event ) {
+//                    event.preventDefault();
+//                    if(false){
+//
+//                    }
+//                    else{
+//                        $.mobile.loading( "show");
+//                        $.ajax({
+//                            url: "test.php",
+//                            data: $( this ).serialize(),
+//                            type: "GET",
+//                            dataType : "html",
+//                            success: function( json ) {
+//                                $.mobile.changePage( "#mainThirdPage");
+//                            },
+//                            error: function( xhr, status, errorThrown ) {
+//
+//                            },
+//                            complete: function( xhr, status ) {
+//                                $.mobile.loading( "hide");
+//                            }
+//                        });
+//                    }
+//
+//                });
+//            });
+/*            $( document ).one( "pagecreate", "#mainThirdPage", function() {
+                $('#resendCode').click(function(){
+                    $.mobile.loading( "show");
+                })
+                $( "#setPasswordForm" ).submit(function( event ) {
+                    event.preventDefault();
+                    if(false){
+
+                    }
+                    else{
+                        $.mobile.loading( "show");
+                        $.ajax({
+                            url: "test.php",
+                            data: $( this ).serialize(),
+                            type: "GET",
+                            dataType : "html",
+                            success: function( json ) {
+                                $.mobile.changePage( "#mainFourthPage");
+                            },
+                            error: function( xhr, status, errorThrown ) {
+
+                            },
+                            complete: function( xhr, status ) {
+                                $.mobile.loading( "hide");
+                            }
+                        });
+                    }
+
+                });
+            });
+            $( document ).one( "pagecreate", "#mainFourthPage", function() {
+                $( "#loginForm" ).submit(function( event ) {
+                    event.preventDefault();
+                    if(false){
+
+                    }
+                    else{
+                        $.mobile.loading( "show");
+                        $.ajax({
+                            url: "test.php",
+                            data: $( this ).serialize(),
+                            type: "GET",
+                            dataType : "html",
+                            success: function( json ) {
+                                $.mobile.changePage( "#forgotPassFirstPage");
+                            },
+                            error: function( xhr, status, errorThrown ) {
+
+                            },
+                            complete: function( xhr, status ) {
+                                $.mobile.loading( "hide");
+                            }
+                        });
+                    }
+
+                });
+            });*/
+        </script>
+    </head>
+    <body>
+        <div data-role="page" id="forgotPassFirstPage">
+            <div role="main" class="ui-content mainPage">
+                <div class="loginLogo">
+                    <img src="images/main-logo.jpg" alt="loginLogo"/>
+                </div>
+                <form  id="forgotPassForm1">
+                    <div class="top-text">
+                        شماره تلفن همراهی که با اون ثبت نام کردی رو برای ارسال پیامک اینجا وارد کن.
+                    </div>
+                    <input type="text" name="forgotPassFirstPage-text-1" id="forgotPassFirstPage-text-1" value="" placeholder="شماره همراه ...">
+                    <div class="text-error" id="forgotPassFirstPage-text-1-errorText"></div>
+                    <input type="submit" value="تایید" >
+                </form>
+            </div>
+        </div>
+        <div data-role="page" id="forgotPassSecondPage">
+            <div role="main" class="ui-content mainPage">
+                <div class="loginLogo">
+                    <img src="images/main-logo.jpg" alt="loginLogo"/>
+                </div>
+                <form  id="forgotPassForm2">
+                    <div class="top-text">
+                        کدی که از طرف
+                        <img src="images/logotype-small.png" alt="logo small text"/>
+                        برای شما پیامک شده برای تایید ثبت  نام اینجا وارد کنید.
+                    </div>
+                    <input type="text" name="forgotPassSecondPage-text-1" id="forgotPassSecondPage-text-1" value="" placeholder="کد بازیابی رمز عبور ...">
+                    <div class="text-error" id="forgotPassSecondPage-text-1-errorText"></div>
+                    <fieldset class="ui-grid-a">
+                        <div class="ui-block-a"><input type="reset" id="resendCode"  value="ارسال مجدد کد" ></div>
+                        <div class="ui-block-b"><input type="submit" value="تایید" ></div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

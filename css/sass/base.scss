@@ -1,6 +1,5 @@
 @import "compass";
 
-
 $bikooch-font-path:  'BYekan/';
 
 @include font-face(
@@ -26,6 +25,9 @@ body, input, select, textarea, button, .ui-btn{
     font-family: BNazanin,san-serif;
     font-size: 20px;
 }
+.ui-mini {
+    font-size: 12.5px;
+}
 .ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper{
     text-shadow: none;
 }
@@ -34,6 +36,20 @@ body, input, select, textarea, button, .ui-btn{
 .ui-input-text input, .ui-input-search input{
     text-align: right;
     direction: rtl;
+}
+.ui-loader{
+    background: transparent;
+    border: none;
+    opacity: 0.5;
+}
+/*
+.ui-btn-icon-right {
+    padding-right: 1em;
+}
+*/
+.ui-state-disabled{
+    opacity: 1;
+    background-color: #cfd8dc !important;
 }
 
 .ui-input-text.error{
@@ -55,4 +71,76 @@ body, input, select, textarea, button, .ui-btn{
 
 .text-error{
     color: #DA0000;
+}
+
+.mainPage{
+    .top-text{
+        text-align: center;
+        font-size: 18px;
+        color: #fff;
+        img{
+            width: 55px;
+            vertical-align: middle;
+            margin: 0 3px -3px;
+        }
+    }
+    .ui-input-text{
+        position: relative;
+    }
+    .text-error{
+        display: none;
+    }
+}
+#mainFirstPage .ui-input-text:before{
+    position: absolute;
+    left: 5px;
+    top: 0;
+    bottom: 0;
+    content: "09";
+    line-height: 46px;
+}
+#mainFirstPage .ui-input-text.no-label:before{
+    display: none;
+}
+#mainFirstPage .ui-input-text input,#mainFirstPage .ui-input-search input{padding-left: 30px}
+
+
+#mainSecondPage{
+    form{
+        margin-top: 20px;
+    }
+    .ui-btn{
+        padding: 0.7em 0;
+        font-size: 18px;
+    }
+}
+#mainThirdPage{
+    form{
+        margin-top: 20px;
+    }
+    .ui-btn{
+        padding: 0.7em 0;
+        font-size: 18px;
+    }
+}
+#mainFourthPage{
+    .forgot-link{
+        font-size: 12px;
+        padding: 0.8em 0;
+    }
+}
+
+#forgotPassFirstPage{
+    form{
+        margin-top: 20px;
+    }
+}
+#forgotPassSecondPage{
+    form{
+        margin-top: 20px;
+    }
+    .ui-btn{
+        padding: 0.7em 0;
+        font-size: 18px;
+    }
 }
