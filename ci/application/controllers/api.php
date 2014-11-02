@@ -38,6 +38,12 @@ class Api extends REST_Controller{
 			$params->own_cell = $this->get('own_cell');
 			$params->IMEI = $this->get('IMEI');
 			$result = $this->user_model->setReferer($params);
+			if ($result->status == 1){
+				$params = new stdclass;
+				$params->user_id = $result->data['user_id'];
+				$params->cell_number = $result->data['cell_number'];
+				$this->user_model->setVerificationCode($params);
+			}
             $this->response($result, 200); // 200 being the HTTP response code
 		}
         else{
@@ -66,6 +72,20 @@ class Api extends REST_Controller{
 			$params->cell_number = $this->get('cell_number');
 			$params->password = $this->get('password');
 			$result = $this->user_model->login($params);
+            $this->response($result, 200); // 200 being the HTTP response code
+		}
+        else{
+            $this->response(NULL, 404);
+		}
+	}
+     
+	function setVerificationCode_get(){
+        if($this->get('user_id') && $this->get('cell_number')){
+			$this->load->model('user_model');
+			$params = new stdclass;
+			$params->user_id = $this->get('user_id');
+			$params->cell_number = $this->get('cell_number');
+			$result = $this->user_model->setVerificationCode($params);
             $this->response($result, 200); // 200 being the HTTP response code
 		}
         else{

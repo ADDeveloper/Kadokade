@@ -26,7 +26,8 @@ class user_model extends ci_model {
 		else{
 			$tmp = $q->row();
 			$referer_id = $tmp->id;
-			$SQL = "SELECT id FROM `users` WHERE `cell_number`=? OR `IMEI`=?";
+			//$SQL = "SELECT id FROM `users` WHERE `cell_number`=? OR `IMEI`=?";
+			$SQL = "SELECT id FROM `users` WHERE `cell_number`=?";
 			$q = $this->db->query($SQL, array($parameters->own_cell,$parameters->IMEI));
 			if ($q->num_rows() == 0){
 				$data = array();
@@ -42,7 +43,7 @@ class user_model extends ci_model {
 				$this->db->insert('people', $data);
 				$output->status = 1;
 				$output->message = 'user added';
-				$output->data = array('user_id'=>$user_id);
+				$output->data = array('user_id'=>$user_id,'cell_number'=>$parameters->own_cell);
 				return $output;
 			}
 			else{
@@ -51,22 +52,36 @@ class user_model extends ci_model {
 				return $output;
 			}
 		}
-
-
-    	if ($q->num_rows() == 0){
-			$SQL = "SELECT id FROM `users` WHERE `cell_number`=?";
-			$q = $this->db->query($SQL, array($parameters->own_cell));
-			if ($q->num_rows() == 0){
-				$data = array();
-				$data['cell_number'] = $parameters->own_cell;
-				$data['status'] = 0;
-				$data['IMEI'] = $parameters->IMEI;
-				$this->db->insert('users', $data);
-				$user_id = $this->db->insert_id();
-				echo $user_id;
-			}
-		}
     }
+	
+	function setVerificationCode($parameters){
+		$output = new stdclass;
+		$data = array();
+		$data['verification_code'] = $this->getRandomText(8);
+		$data['status'] = 0;
+		$where = array('id'=>$parameters->user_id,'cell_number'=>$parameters->cell_number);
+		$this->db->where($where);
+		if ($this->db->update('users', $data)){
+			$output->status = 1;
+			$output->message = 'verification code added';
+		}
+		else{
+			$output->status = -1;
+			$output->message = 'error adding verification code';
+		} 
+		return $output;
+		
+	}
+	
+	private function getRandomText($length){
+		$pool = 'abcdefghijklmnopqrstuvwxyz0123456789';
+		$pool = '0123456789';
+		$output = '';
+		for($i=0; $i < $length; $i++){
+			$output .= $pool[mt_rand(0,strlen($pool)-1)];
+		}
+		return $output;
+	}
 	
     function checkVerification($parameters) {
 		$output = new stdclass;
